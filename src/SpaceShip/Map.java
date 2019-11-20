@@ -59,7 +59,9 @@ public class Map {
     int g = (p>>8) & 0xff;
     int b = p & 0xff;
     return new int[]{r, g, b};
-  }
+  }//compara pixeis == azul no mapa antigo, alterar para infomar [ x , y] de maeira
+  //que quando == [ x, y ] retorne true(para informar na hora de minerar se existe minerio)
+  //alterar juntamente com isMineral e is Gas
   
   private boolean comparePixels(int[] pixel1, int[] pixel2) {
     return (pixel1[0] == pixel2[0] &&

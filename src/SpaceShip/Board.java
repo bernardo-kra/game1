@@ -15,6 +15,9 @@ import java.util.List;
 import java.util.Scanner;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Board extends JPanel implements ActionListener {
 
@@ -28,6 +31,10 @@ public class Board extends JPanel implements ActionListener {
     private List<Sprite> objects = new ArrayList<>();//Sprite projecao na tela
     private Map map;
     private final Scanner scanner;
+    public int hp;
+    public int crystal;
+    public final int nexusX = 100;
+    public final int nexusY = 100;
 
     public Board() {
         scanner = new Scanner(System.in);
@@ -44,8 +51,9 @@ public class Board extends JPanel implements ActionListener {
         setBackground(Color.BLACK);
         setFocusable(true);
 
-        objects.add(new Probe(ICRAFT_X, ICRAFT_Y));
-        objects.add(new Construc(500, 150));
+        objects.add(new Construc(100, 100));
+
+        objects.add(new Ore(122, 192));
 
         timer = new Timer(DELAY, this);
         timer.start();
@@ -85,16 +93,58 @@ public class Board extends JPanel implements ActionListener {
     }
 
     private void play() {
+        
+        int conta = 0;
+        System.out.println("Informar probe");
+
         while (true) {
-            System.out.println("Deseja criar mais um Probe S/N");
             String key = scanner.nextLine();
-            if ("S".equals(key)) {
-                objects.add(new Probe(200, 350));
+
+                       
+                       
+            if ("probe".equals(key) || "ls".equals(key)) {
+                for (Sprite o : objects) {
+                    conta++;
+                      if (o instanceof Probe) {
+                    System.out.println("Arraylist[ " + (conta - 1) + " ] = " + o);
+                    }
+                    int t;
+
+                    for (int i = 0; i < 10; i++) {
+
+                        Probe p = (Probe) objects.get(1);
+
+                        p.x += 10;
+                        p.y += 10;
+                        try {
+                            Thread.sleep(240);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+
+                }
 
             }
 
         }
     }
+
+    /*     
+            int conta = 0;
+
+           
+            }if ("S".equals(key) || "s".equals(key)) {
+                objects.add(new Probe(350, 300));
+
+            }if ("N".equals(key)) {
+               
+               Probe p = (Probe) objects.get(0);
+               p.x = 333;
+               p.y = 333;
+            }
+     */
+    
 
     private class TAdapter extends KeyAdapter {
 

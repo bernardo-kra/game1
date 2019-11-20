@@ -5,19 +5,20 @@ import javax.swing.ImageIcon;
 
 public class Sprite {
 
-    protected int x;
-    protected int y;
+    public int x;
+    public int y;
     protected int width;
     protected int height;
     protected boolean visible;
     protected Image image;
+   
 
     public Sprite(int x, int y) {
         this.x = x;
         this.y = y;
         visible = true;
     }
-
+    
     protected void loadImage(String imageName) {
 
         ImageIcon ii = new ImageIcon(imageName);
