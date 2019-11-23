@@ -145,7 +145,7 @@ public class Board extends JPanel implements ActionListener {
             }
      */
     
-
+//ta bombando
     private class TAdapter extends KeyAdapter {
 
         @Override
