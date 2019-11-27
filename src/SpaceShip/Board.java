@@ -54,6 +54,7 @@ public class Board extends JPanel implements ActionListener {
         objects.add(new Construc(100, 100));
 
         objects.add(new Ore(122, 192));
+        objects.add(new Probe(110,105));
 
         timer = new Timer(DELAY, this);
         timer.start();
@@ -93,44 +94,51 @@ public class Board extends JPanel implements ActionListener {
     }
 
     private void play() {
-        
+
         int conta = 0;
         System.out.println("Informar probe");
 
         while (true) {
             String key = scanner.nextLine();
 
-                       
-                       
             if ("probe".equals(key) || "ls".equals(key)) {
                 for (Sprite o : objects) {
                     conta++;
-                      if (o instanceof Probe) {
-                    System.out.println("Arraylist[ " + (conta - 1) + " ] = " + o);
+                    if (o instanceof Probe) {
+                        System.out.println("Arraylist[ " + (conta - 1) + " ] = " + o);
                     }
-                    int t;
+                }
+                conta = 0;
+            }
+            if ("n".equals(key) || "N".equals(key)) {
+                for (Sprite o : objects) {
+                    conta++;
+                    if (o instanceof Construc) {
+                        System.out.println("Arraylist[ " + (conta - 1) + " ] = " + o);
 
-                    for (int i = 0; i < 10; i++) {
+                        int t;
 
-                        Probe p = (Probe) objects.get(1);
-
-                        p.x += 10;
-                        p.y += 10;
-                        try {
-                            Thread.sleep(240);
-                        } catch (InterruptedException ex) {
-                            Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
-                        }
                     }
 
                 }
-
             }
-
+                System.out.println("Deseja criar um novo Probe ? S/N");
+                if("S".equals(key) || "s".equals(key)){
+                    objects.add(new Probe(nexusX +40,nexusY +40));
+                    for (Sprite o : objects) {
+                    conta++;
+                    if (o instanceof Probe) {
+                        System.out.println("Arraylist[ " + (conta - 1) + " ] = " + o);
+                    }
+                }
+                conta = 0;
+            }
         }
     }
 
     /*     
+                                    //                      Probe p = (Probe) objects.get(1);
+
             int conta = 0;
 
            
@@ -144,8 +152,6 @@ public class Board extends JPanel implements ActionListener {
                p.y = 333;
             }
      */
-    
-//ta bombando
     private class TAdapter extends KeyAdapter {
 
         @Override
