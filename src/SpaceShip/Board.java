@@ -35,6 +35,7 @@ public class Board extends JPanel implements ActionListener {
     public int crystal;
     public final int nexusX = 100;
     public final int nexusY = 100;
+    int c, q = 0;
 
     public Board() {
         scanner = new Scanner(System.in);
@@ -53,8 +54,8 @@ public class Board extends JPanel implements ActionListener {
 
         objects.add(new Construc(100, 100));
 
-        objects.add(new Ore(122, 192));
-        objects.add(new Probe(110,105));
+        objects.add(new Ore(800, 192));
+        objects.add(new Probe(110, 105));
 
         timer = new Timer(DELAY, this);
         timer.start();
@@ -108,6 +109,21 @@ public class Board extends JPanel implements ActionListener {
                         System.out.println("Arraylist[ " + (conta - 1) + " ] = " + o);
                     }
                 }
+                System.out.println("Deseja mover o Probe ? S/n");
+                key = scanner.nextLine();
+                if ("S".equals(key) || "s".equals(key)) {
+                    System.out.println("Qual probe deseja mover ?");
+                    key = scanner.nextLine();
+                    q = Integer.parseInt(key);
+
+                    if (q != 0 && objects.get(q) instanceof Probe) {
+                        System.out.println(key);
+                        System.out.println("Moveu");
+                    } else {
+                        System.out.println("Nao ha um probe nesta posição");
+                    }
+                }
+
                 conta = 0;
             }
             if ("n".equals(key) || "N".equals(key)) {
@@ -121,23 +137,29 @@ public class Board extends JPanel implements ActionListener {
                     }
 
                 }
-            }
                 System.out.println("Deseja criar um novo Probe ? S/N");
-                if("S".equals(key) || "s".equals(key)){
-                    objects.add(new Probe(nexusX +40,nexusY +40));
-                    for (Sprite o : objects) {
-                    conta++;
-                    if (o instanceof Probe) {
-                        System.out.println("Arraylist[ " + (conta - 1) + " ] = " + o);
-                    }
-                }
+
+                String key1 = scanner.nextLine();
                 conta = 0;
+                if ("S".equals(key1) || "s".equals(key1)) {
+                    objects.add(new Probe(nexusX + (10 * c), nexusY + 40 - (conta * c)));
+                    for (Sprite o : objects) {
+                        conta++;
+                        c++;
+                        if (o instanceof Probe) {
+                            System.out.println("Arraylist[ " + (conta - 1) + " ] = " + o);
+                        }
+
+                    }
+                    conta = 0;
+                }
             }
+
         }
     }
 
     /*     
-                                    //                      Probe p = (Probe) objects.get(1);
+                                    //                     
 
             int conta = 0;
 
