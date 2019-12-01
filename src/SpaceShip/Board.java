@@ -35,7 +35,7 @@ public class Board extends JPanel implements ActionListener {
     public int crystal;
     public final int nexusX = 100;
     public final int nexusY = 100;
-    int c, q = 0;
+    int c, q = 0, alteraX, alteraY = 0, leInteiro = 0;
 
     public Board() {
         scanner = new Scanner(System.in);
@@ -117,7 +117,15 @@ public class Board extends JPanel implements ActionListener {
                     q = Integer.parseInt(key);
 
                     if (q != 0 && objects.get(q) instanceof Probe) {
-                        System.out.println(key);
+                        Probe p = (Probe) objects.get(q);
+                        System.out.println("Informe a posição X");
+                        key = scanner.nextLine();
+                        alteraX = Integer.parseInt(key);
+                        p.x = alteraX;
+                        System.out.println("Informe a posição Y");
+                        key = scanner.nextLine();
+                        alteraY = Integer.parseInt(key);
+                        p.y = alteraY;
                         System.out.println("Moveu");
                     } else {
                         System.out.println("Nao ha um probe nesta posição");
@@ -131,25 +139,20 @@ public class Board extends JPanel implements ActionListener {
                     conta++;
                     if (o instanceof Construc) {
                         System.out.println("Arraylist[ " + (conta - 1) + " ] = " + o);
-
                         int t;
-
                     }
-
                 }
                 System.out.println("Deseja criar um novo Probe ? S/N");
-
                 String key1 = scanner.nextLine();
                 conta = 0;
                 if ("S".equals(key1) || "s".equals(key1)) {
-                    objects.add(new Probe(nexusX + (10 * c), nexusY + 40 - (conta * c)));
+                    criaProbe();
                     for (Sprite o : objects) {
                         conta++;
                         c++;
                         if (o instanceof Probe) {
                             System.out.println("Arraylist[ " + (conta - 1) + " ] = " + o);
                         }
-
                     }
                     conta = 0;
                 }
@@ -197,4 +200,13 @@ public class Board extends JPanel implements ActionListener {
             }
         }
     }
+
+    public void criaProbe() {
+        int conta = 5;
+
+        objects.add(new Probe(nexusX + (2 * c), nexusY + 40 - (conta * c)));
+        conta++;
+        System.out.println(conta);
+    }
+
 }
