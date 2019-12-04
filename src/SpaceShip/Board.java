@@ -28,7 +28,7 @@ public class Board extends JPanel implements ActionListener {
     private int focus_shift_x = 0;
     private int focus_shift_y = 0;
     private final int SPEED = 2;
-    private List<Sprite> objects = new ArrayList<>();//Sprite projecao na tela
+    public List<Sprite> objects = new ArrayList<>();//Sprite projecao na tela
     private Map map;
     private final Scanner scanner;
     public int hp;
@@ -36,6 +36,8 @@ public class Board extends JPanel implements ActionListener {
     public final int nexusX = 100;
     public final int nexusY = 100;
     int c, q = 0, alteraX, alteraY = 0, leInteiro = 0;
+    Boolean x;
+    String trash;
 
     public Board() {
         scanner = new Scanner(System.in);
@@ -55,7 +57,7 @@ public class Board extends JPanel implements ActionListener {
         objects.add(new Construc(100, 100));
 
         objects.add(new Ore(800, 192));
-        objects.add(new Probe(110, 105));
+      //  objects.add(new Probe(110, 105));
 
         timer = new Timer(DELAY, this);
         timer.start();
@@ -93,10 +95,43 @@ public class Board extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         repaint();
     }
-
+ int conta=0;
     private void play() {
+       
+    
+        System.out.println("Informe Player 1 e o Player 2");
+        String key = scanner.nextLine();
+        Player p1 = new Player(key);
+        key = scanner.nextLine();
 
-        int conta = 0;
+        Player p2 = new Player(key);
+        System.out.println(p1.nome + "\n" + p2.nome);
+        Player playerAtual = p1;
+        
+        while (true) {
+            Probe p = new Probe(nexusX+455, nexusY+123);
+            playerAtual.arrayPlayer.add(p);
+            objects.add(p);
+            key = scanner.nextLine();
+              if ("probe".equals(key) || "ls".equals(key)) {
+                for (Sprite o : objects) {
+                    conta++;
+                    if (o instanceof Probe) {
+                        System.out.println("Arraylist[ " + (conta - 1) + " ] = " + o);
+                    }
+                }
+                conta=0;
+            
+            
+            playerAtual = (playerAtual == p1)? p2:p1;
+            
+            
+
+            }
+
+        }
+    }
+        /* int conta = 0;
         System.out.println("Informar probe");
 
         while (true) {
@@ -155,13 +190,15 @@ public class Board extends JPanel implements ActionListener {
                         }
                     }
                     conta = 0;
-                }
+                
+
+}
             }
 
         }
     }
 
-    /*     
+       
                                     //                     
 
             int conta = 0;
@@ -176,7 +213,16 @@ public class Board extends JPanel implements ActionListener {
                p.x = 333;
                p.y = 333;
             }
-     */
+         */
+    
+/*
+            if (playerAtual == p1) {
+                playerAtual = p2;
+                        
+            }else{
+                playerAtual = p1;
+            }
+*/
     private class TAdapter extends KeyAdapter {
 
         @Override
