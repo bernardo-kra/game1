@@ -5,7 +5,7 @@ public class Probe extends Sprite {
     public int lifeProbe;
     public int bagProbe;
     public final int custoProbe = 20;
-    private String dono;
+    public String dono;
 
     public Probe(int x, int y) {
         super(x, y);
@@ -30,5 +30,6 @@ public class Probe extends Sprite {
     public void setDono(String dono) {
         this.dono = dono;
     }
-
+    
+    
 }

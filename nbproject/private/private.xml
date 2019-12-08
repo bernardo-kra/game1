@@ -2,10 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group name="Group 20191107-11:09:24">
-            <file>file:/C:/Users/berna/OneDrive/Área%20de%20Trabalho/Aulas/Git-Game/game2/game1/src/SpaceShip/Board.java</file>
-            <file>file:/C:/Users/berna/OneDrive/Área%20de%20Trabalho/Aulas/Git-Game/game2/game1/src/SpaceShip/Probe.java</file>
-        </group>
         <group>
             <file>file:/C:/Users/berna/OneDrive/Documentos/NetBeansProjects/game12/src/SpaceShip/Board.java</file>
             <file>file:/C:/Users/berna/OneDrive/Documentos/NetBeansProjects/game12/src/SpaceShip/Construc.java</file>
@@ -13,6 +9,14 @@
             <file>file:/C:/Users/berna/OneDrive/Documentos/NetBeansProjects/game12/src/SpaceShip/Probe.java</file>
             <file>file:/C:/Users/berna/OneDrive/Documentos/NetBeansProjects/game12/src/SpaceShip/Map.java</file>
             <file>file:/C:/Users/berna/OneDrive/Documentos/NetBeansProjects/game12/src/SpaceShip/Player.java</file>
+        </group>
+        <group name="Group 20191107-11:09:24">
+            <file>file:/C:/Users/berna/OneDrive/Área%20de%20Trabalho/Aulas/Git-Game/game2/game/game1/src/SpaceShip/Ore.java</file>
+            <file>file:/C:/Users/berna/OneDrive/Área%20de%20Trabalho/Aulas/Git-Game/game2/game/game1/src/SpaceShip/Board.java</file>
+            <file>file:/C:/Users/berna/OneDrive/Área%20de%20Trabalho/Aulas/Git-Game/game2/game/game1/src/SpaceShip/Sprite.java</file>
+            <file>file:/C:/Users/berna/OneDrive/Área%20de%20Trabalho/Aulas/Git-Game/game2/game/game1/src/SpaceShip/Probe.java</file>
+            <file>file:/C:/Users/berna/OneDrive/Área%20de%20Trabalho/Aulas/Git-Game/game2/game/game1/src/SpaceShip/Construc.java</file>
+            <file>file:/C:/Users/berna/OneDrive/Área%20de%20Trabalho/Aulas/Git-Game/game2/game/game1/src/SpaceShip/Player.java</file>
         </group>
     </open-files>
 </project-private>

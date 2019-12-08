@@ -11,7 +11,8 @@ package SpaceShip;
  */
 public class Ore extends Sprite{
     public final int crystalOre = 5000;
-    
+    public int x;
+    public int y;
     
     public Ore(int x, int y) {
         super(x , y);
@@ -23,4 +24,11 @@ public class Ore extends Sprite{
         loadImage("src/resources/cryst.png");
         getImageDimensions();
     }
+
+    @Override
+    public String toString() {
+        return "Crystal{" + "crystalOre=" + crystalOre + '}';
+    }
+   
+
 }

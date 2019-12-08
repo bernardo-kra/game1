@@ -33,8 +33,6 @@ public class Board extends JPanel implements ActionListener {
     private final Scanner scanner;
     public int hp;
     public int crystal;
-    public final int nexusX = 100;
-    public final int nexusY = 100;
     int c, q = 0, alteraX, alteraY = 0, leInteiro = 0;
     Boolean x;
     String trash;
@@ -54,9 +52,12 @@ public class Board extends JPanel implements ActionListener {
         setBackground(Color.BLACK);
         setFocusable(true);
 
-        objects.add(new Construc(100, 100));
-
-        objects.add(new Ore(800, 192));
+        objects.add(new Ore(900, 10));
+        objects.add(new Ore(900, 50));
+        objects.add(new Ore(900, 100));
+        objects.add(new Ore(50, 600));
+        objects.add(new Ore(50, 650));
+        objects.add(new Ore(50, 700));
         //  objects.add(new Probe(110, 105));
 
         timer = new Timer(DELAY, this);
@@ -102,19 +103,116 @@ public class Board extends JPanel implements ActionListener {
         System.out.println("Informe Player 1 e o Player 2");
         String key = scanner.nextLine();
         Player p1 = new Player(key);
-        key = scanner.nextLine();
 
+        key = scanner.nextLine();
         Player p2 = new Player(key);
         System.out.println(p1.nome + "\n" + p2.nome);
+
+        Construc c1 = new Construc(50, 50);
+        c1.setDono(p1.nome);
+        p1.arrayPlayer.add(c1);
+        Construc c2 = new Construc(750, 600);
+        c2.setDono(p2.nome);
+        p2.arrayPlayer.add(c2);
+        objects.add(c1);
+        objects.add(c2);
+
+        Probe pr1 = new Probe(150, 150);
+        pr1.setDono(p1.nome);
+        p1.arrayPlayer.add(pr1);
+        Probe pr2 = new Probe(700, 550);
+        pr2.setDono(p2.nome);
+        p2.arrayPlayer.add(pr2);
+
+        objects.add(pr1);
+        objects.add(pr2);
         Player playerAtual = p1;
 
         while (true) {
-            Probe p = new Probe(nexusX + 455, nexusY + 123);
-            p.setDono(playerAtual.nome);
-            playerAtual.arrayPlayer.add(p);
+            int op;
 
-            objects.add(p);
-            key = scanner.nextLine();
+            System.out.println("************** Informe uma operação ************** \n"
+                    + "1:Listar Todos objetos do Player: " + playerAtual.nome + "\n"
+                    + "2:Listar Todos os Minerios" + "\n"
+                    + "3:Tropas" + "\n"
+                    + "4:Quartel"
+            );
+            op = scanner.nextInt();
+
+            switch (op) {
+
+                case 1:
+                    System.out.println("");
+
+                    for (Sprite o : objects) {
+                        conta++;
+                        if (o instanceof Probe) {
+                            if (((Probe) o).getDono().equals(playerAtual.nome)) {
+                                System.out.println("Arraylist[ " + (conta - 1) + " ] = " + o);
+                            }
+                        }
+                        if (o instanceof Construc) {
+                            if (((Construc) o).getDono().equals(playerAtual.nome)) {
+                                System.out.println("Arraylist[ " + (conta - 1) + " ] = " + o);
+                            }
+                        }
+                    }
+                    
+                    System.out.println("Informe uma ação\n"
+                            + "1: Contruir\n"
+                            + "2: Atacar\n"
+                            + "3: Coletar");
+                    
+                    op = scanner.nextInt();
+                    switch (op) {
+                    
+                    case 1:
+                            
+                        
+                        
+                        System.out.println("Piroca Loca");
+                            
+                            
+                            
+                            
+                            break;
+                            case 2:
+                            break;
+                            case 3:
+                                conta = 0;
+                                System.out.println("Indique a posição onde deseja coletar:");
+                                for (Sprite o : objects) {
+                                    conta++;
+                                    if (o instanceof Ore) {                                       
+                                            System.out.println("Arraylist[ " + (conta - 1) + " ] = " + o);                                       
+                                    }
+                                }conta = 0; 
+                                op = scanner.nextInt();
+                                System.out.println("Qual probe vai coletar:");                              
+                                int selcprobe = scanner.nextInt();
+                                Probe p = (Probe) objects.get(selcprobe);
+                                
+                                p.x = 500;
+                                p.y = 500;                              
+                            break;
+                    }                                             
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+
+            }
+
+            playerAtual = (playerAtual == p1) ? p2 : p1;
+
+        }
+
+    }
+
+
+    /* 
+  key = scanner.nextLine();
             if ("probe".equals(key) || "ls".equals(key)) {
                 for (Sprite o : objects) {
                     conta++;
@@ -127,14 +225,10 @@ public class Board extends JPanel implements ActionListener {
                 }
                 conta = 0;
 
-                playerAtual = (playerAtual == p1) ? p2 : p1;
 
-            }
 
-        }
-    }
 
-    /* int conta = 0;
+int conta = 0;
         System.out.println("Informar probe");
 
         while (true) {
@@ -248,14 +342,6 @@ public class Board extends JPanel implements ActionListener {
                 focus_shift_y -= SPEED;
             }
         }
-    }
-
-    public void criaProbe() {
-        int conta = 5;
-
-        objects.add(new Probe(nexusX + (2 * c), nexusY + 40 - (conta * c)));
-        conta++;
-        System.out.println(conta);
     }
 
 }
