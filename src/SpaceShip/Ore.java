@@ -10,7 +10,7 @@ package SpaceShip;
  * @author berna
  */
 public class Ore extends Sprite{
-    public final int crystalOre = 5000;
+    public int quantidadeCrystal = 5000;
     public int x;
     public int y;
     
@@ -27,7 +27,7 @@ public class Ore extends Sprite{
 
     @Override
     public String toString() {
-        return "Crystal{" + "crystalOre=" + crystalOre + '}';
+        return "Crystal{" + "crystalOre=" + quantidadeCrystal + '}';
     }
    
 

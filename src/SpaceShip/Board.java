@@ -157,55 +157,71 @@ public class Board extends JPanel implements ActionListener {
                             }
                         }
                     }
-                    
+
                     System.out.println("Informe uma ação\n"
                             + "1: Contruir\n"
                             + "2: Atacar\n"
                             + "3: Coletar");
-                    
+
                     op = scanner.nextInt();
                     switch (op) {
-                    
-                    case 1:
-                            
-                        
-                        
-                        System.out.println("Piroca Loca");
-                            
-                            
-                            
-                            
+
+                        case 1:
+
+                            System.out.println("Piroca Loca");
+
                             break;
-                            case 2:
+                        case 2:
                             break;
-                            case 3:
-                                conta = 0;
-                                System.out.println("Indique a posição onde deseja coletar:");
+                        case 3:
+                            conta = 0;
+                            System.out.println("Indique qual cristal deseja coletar:");
+                            for (Sprite o : objects) {
+                                conta++;
+                                if (o instanceof Ore) {
+                                    System.out.println("Arraylist[ " + (conta - 1) + " ] = " + o);
+                                }
+                            }
+                            conta = 0;
+                            op = scanner.nextInt();
+                            Ore ore = (Ore) objects.get(op);
+                            if (ore.quantidadeCrystal > 0) {
+                                ore.quantidadeCrystal = ore.quantidadeCrystal - 50;
+
+                                System.out.println("Qual probe vai coletar:");
                                 for (Sprite o : objects) {
                                     conta++;
-                                    if (o instanceof Ore) {                                       
-                                            System.out.println("Arraylist[ " + (conta - 1) + " ] = " + o);                                       
+                                    if (o instanceof Probe) {
+                                        if (((Probe) o).getDono().equals(playerAtual.nome)) {
+                                            System.out.println("Arraylist[ " + (conta - 1) + " ] = " + o);
+                                        }
                                     }
-                                }conta = 0; 
-                                op = scanner.nextInt();
-                                System.out.println("Qual probe vai coletar:");                              
+                                }
+
                                 int selcprobe = scanner.nextInt();
                                 Probe p = (Probe) objects.get(selcprobe);
-                                
-                                p.x = 500;
-                                p.y = 500;                              
+                                p.bagProbe = p.bagProbe + 50;
+                                p.x = ore.x;
+                                p.y = ore.y;
+                            } else {
+                                System.out.println("Não possui mais cristais");
+                            }
+                            conta = 0;
+
                             break;
-                    }                                             
-                    break;
+
+                    }
+
                 case 2:
-                    break;
-                case 3:
+
                     break;
 
+                case 3:
+
+                    break;
             }
 
             playerAtual = (playerAtual == p1) ? p2 : p1;
-
         }
 
     }
