@@ -12,6 +12,8 @@ public class Construc extends Sprite {
 
     public Construc(int x, int y) {
         super(x, y);
+        this.posicaoNexusX = x;
+        this.posicaoNexusy = y;
         initConstruc();
     }
 

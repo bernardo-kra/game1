@@ -203,6 +203,17 @@ public class Board extends JPanel implements ActionListener {
                                 p.bagProbe = p.bagProbe + 50;
                                 p.x = ore.x;
                                 p.y = ore.y;
+                                
+                                Construc nexus = (Construc) playerAtual.arrayPlayer.get(0);
+                                
+                                try { Thread.sleep (10000); } catch (InterruptedException ex) {}
+                                nexus.bagNexus= p.bagProbe;
+                                
+                                p.x = nexus.posicaoNexusX;
+                                p.y = nexus.posicaoNexusy;
+                                
+                                p.bagProbe = 0;
+                                
                             } else {
                                 System.out.println("Não possui mais cristais");
                             }

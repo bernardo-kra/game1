@@ -11,11 +11,14 @@ package SpaceShip;
  */
 public class Ore extends Sprite{
     public int quantidadeCrystal = 5000;
-    public int x;
-    public int y;
+    public int oreX;
+    public int oreY;
     
     public Ore(int x, int y) {
-        super(x , y);
+        super(x,y);
+        
+        this.oreX = x;
+        this.oreY = y;
         
         initOre();
     }
