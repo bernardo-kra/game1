@@ -2,9 +2,9 @@ package SpaceShip;
 
 public class Probe extends Sprite {
 
-    public int lifeProbe;
+    public int lifeProbe = 20;
     public int bagProbe;
-    public final int custoProbe = 20;
+   // public int custoProbe = 20;
     public String dono;
 
     public Probe(int x, int y) {

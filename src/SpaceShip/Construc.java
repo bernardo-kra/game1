@@ -6,8 +6,8 @@ public class Construc extends Sprite {
     public int posicaoNexusX;
     public int posicaoNexusy;
     int i = 0;
-    public int bagNexus = 0;
-    public int lifeNexus = 5000;
+    public int bagNexus = 50;
+    public int lifeNexus = 20;
     public String dono;
 
     public Construc(int x, int y) {

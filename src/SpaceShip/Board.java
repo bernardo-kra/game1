@@ -129,9 +129,11 @@ public class Board extends JPanel implements ActionListener {
         Player playerAtual = p1;
 
         while (true) {
+            
             int op;
 
-            System.out.println("************** Informe uma operação ************** \n"
+            System.out.println("************** Player Atual [ " + playerAtual.nome + " ] ************** \n"
+                    + "Escolha uma Operação \n"
                     + "1:Listar Todos objetos do Player: " + playerAtual.nome + "\n"
                     + "2:Listar Todos os Minerios" + "\n"
                     + "3:Tropas" + "\n"
@@ -157,9 +159,10 @@ public class Board extends JPanel implements ActionListener {
                             }
                         }
                     }
+                    conta = 0;
 
                     System.out.println("Informe uma ação\n"
-                            + "1: Contruir\n"
+                            + "1: Novo Probe\n"
                             + "2: Atacar\n"
                             + "3: Coletar");
 
@@ -167,13 +170,99 @@ public class Board extends JPanel implements ActionListener {
                     switch (op) {
 
                         case 1:
+                            Construc nexus = (Construc) playerAtual.arrayPlayer.get(0);
+                            if (nexus.bagNexus >= 50) {
 
-                            System.out.println("Piroca Loca");
+                                if (playerAtual == p1) {
+                                    Probe p = new Probe(150, 150);
+                                    p.setDono(playerAtual.nome);
+                                    playerAtual.arrayPlayer.add(p);
+                                    objects.add(p);
+                                    nexus.bagNexus -= 50;
+                                } else {
+                                    Probe p = new Probe(600, 600);
+                                    p.setDono(playerAtual.nome);
+                                    playerAtual.arrayPlayer.add(p);
+                                    objects.add(p);
+                                    nexus.bagNexus -= 50;
+
+                                }
+                            } else {
+                                System.out.println("Não possui Cristais suficiente");
+                            }
 
                             break;
                         case 2:
+                            
+                            conta = 0;
+                            
+                            int guardaPosicaoX,
+                             guardaPosicaoY;
+                            System.out.println("Informe um Probe para Atacar");
+                            for (Sprite o : objects) {
+                                conta++;
+                                if (o instanceof Probe) {
+                                    if (((Probe) o).getDono().equals(playerAtual.nome)) {
+                                        System.out.println("Arraylist[ " + (conta - 1) + " ] = " + o);
+                                    }
+                                }
+
+                            }
+                            if(conta == 0){
+                                System.out.println("Não há tropas!!!");
+                                break;
+                            }
+                            conta = 0;
+                            op = scanner.nextInt();
+                            Probe probeAtaca = (Probe) objects.get(op);
+
+                            System.out.println("Indique um Probe para ser atacado:");
+                            for (Sprite o : objects) {
+                                conta++;
+                                if (o instanceof Probe) {
+                                    if (!((Probe) o).getDono().equals(playerAtual.nome)) {
+                                        System.out.println("Arraylist[ " + (conta - 1) + " ] = " + o);
+                                    }
+                                }
+                            }
+                            
+                            conta = 0;
+
+                            int a = scanner.nextInt();
+                            Probe probeAtacado = (Probe) objects.get(a);
+
+                            probeAtacado.lifeProbe -= 20;
+
+                            guardaPosicaoX = probeAtaca.x;
+                            guardaPosicaoY = probeAtaca.y;
+
+                            probeAtaca.x = probeAtacado.x;
+
+                            probeAtaca.y = probeAtacado.y;
+
+                            try {
+                                Thread.sleep(10000);
+                            } catch (InterruptedException ex) {
+                            }
+
+                            probeAtaca.x = guardaPosicaoX;
+                            probeAtaca.y = guardaPosicaoY;
+                            
+                            
+                            
+                            if (probeAtacado.lifeProbe<=0) {
+                                Probe probeMorre = probeAtacado;
+                                if(playerAtual.nome != probeMorre.dono){
+                                    objects.remove(probeMorre);
+                                    
+                                }
+                                
+                            }
+                            
+                            
+
                             break;
-                        case 3:
+                        case 3: ///
                             conta = 0;
                             System.out.println("Indique qual cristal deseja coletar:");
                             for (Sprite o : objects) {
@@ -182,9 +271,12 @@ public class Board extends JPanel implements ActionListener {
                                     System.out.println("Arraylist[ " + (conta - 1) + " ] = " + o);
                                 }
                             }
+
                             conta = 0;
+
                             op = scanner.nextInt();
                             Ore ore = (Ore) objects.get(op);
+
                             if (ore.quantidadeCrystal > 0) {
                                 ore.quantidadeCrystal = ore.quantidadeCrystal - 50;
 
@@ -203,24 +295,26 @@ public class Board extends JPanel implements ActionListener {
                                 p.bagProbe = p.bagProbe + 50;
                                 p.x = ore.x;
                                 p.y = ore.y;
-                                
-                                Construc nexus = (Construc) playerAtual.arrayPlayer.get(0);
-                                
-                                try { Thread.sleep (10000); } catch (InterruptedException ex) {}
-                                nexus.bagNexus= p.bagProbe;
-                                
-                                p.x = nexus.posicaoNexusX;
-                                p.y = nexus.posicaoNexusy;
-                                
+
+                                Construc nexus1 = (Construc) playerAtual.arrayPlayer.get(0);
+
+                                try {
+                                    Thread.sleep(10000);
+                                } catch (InterruptedException ex) {
+                                }
+                                nexus1.bagNexus = p.bagProbe;
+
+                                p.x = nexus1.posicaoNexusX;
+                                p.y = nexus1.posicaoNexusy;
+
                                 p.bagProbe = 0;
-                                
+
                             } else {
                                 System.out.println("Não possui mais cristais");
                             }
                             conta = 0;
 
                             break;
-
                     }
 
                 case 2:
@@ -230,15 +324,12 @@ public class Board extends JPanel implements ActionListener {
                 case 3:
 
                     break;
-            }
 
+            }
             playerAtual = (playerAtual == p1) ? p2 : p1;
         }
-
     }
-
-
-    /* 
+        /* 
   key = scanner.nextLine();
             if ("probe".equals(key) || "ls".equals(key)) {
                 for (Sprite o : objects) {
@@ -337,16 +428,15 @@ int conta = 0;
                p.x = 333;
                p.y = 333;
             }
-     */
-
- /*
+         */
+        /*
             if (playerAtual == p1) {
                 playerAtual = p2;
                         
             }else{
                 playerAtual = p1;
             }
-     */
+         */
     private class TAdapter extends KeyAdapter {
 
         @Override
@@ -370,5 +460,4 @@ int conta = 0;
             }
         }
     }
-
 }
