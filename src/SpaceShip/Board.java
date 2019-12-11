@@ -306,7 +306,8 @@ public class Board extends JPanel implements ActionListener {
 
                                 p.x = nexus1.posicaoNexusX;
                                 p.y = nexus1.posicaoNexusy;
-
+                                
+                                nexus1.bagNexus += 50;
                                 p.bagProbe = 0;
 
                             } else {
