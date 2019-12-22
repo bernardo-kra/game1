@@ -96,6 +96,7 @@ public class Board extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         repaint();
     }
+
     int conta = 0;
 
     private void play() {
@@ -129,7 +130,7 @@ public class Board extends JPanel implements ActionListener {
         Player playerAtual = p1;
 
         while (true) {
-            
+
             int op;
 
             System.out.println("************** Player Atual [ " + playerAtual.nome + " ] ************** \n"
@@ -151,6 +152,7 @@ public class Board extends JPanel implements ActionListener {
                         if (o instanceof Probe) {
                             if (((Probe) o).getDono().equals(playerAtual.nome)) {
                                 System.out.println("Arraylist[ " + (conta - 1) + " ] = " + o);
+
                             }
                         }
                         if (o instanceof Construc) {
@@ -193,11 +195,11 @@ public class Board extends JPanel implements ActionListener {
 
                             break;
                         case 2:
-                            
+
                             conta = 0;
-                            
+
                             int guardaPosicaoX,
-                             guardaPosicaoY;
+                                    guardaPosicaoY;
                             System.out.println("Informe um Probe para Atacar");
                             for (Sprite o : objects) {
                                 conta++;
@@ -208,7 +210,7 @@ public class Board extends JPanel implements ActionListener {
                                 }
 
                             }
-                            if(conta == 0){
+                            if (conta == 0) {
                                 System.out.println("Não há tropas!!!");
                                 break;
                             }
@@ -225,7 +227,7 @@ public class Board extends JPanel implements ActionListener {
                                     }
                                 }
                             }
-                            
+
                             conta = 0;
 
                             int a = scanner.nextInt();
@@ -247,19 +249,17 @@ public class Board extends JPanel implements ActionListener {
 
                             probeAtaca.x = guardaPosicaoX;
                             probeAtaca.y = guardaPosicaoY;
-                            
-                            
-                            
-                            if (probeAtacado.lifeProbe<=0) {
+
+
+                            if (probeAtacado.lifeProbe <= 0) {
                                 Probe probeMorre = probeAtacado;
-                                if(playerAtual.nome != probeMorre.dono){
+                                if (playerAtual.nome != probeMorre.dono) {
                                     objects.remove(probeMorre);
-                                    
+
                                 }
-                                
+
                             }
-                            
-                            
+
 
                             break;
                         case 3: ///
@@ -306,7 +306,7 @@ public class Board extends JPanel implements ActionListener {
 
                                 p.x = nexus1.posicaoNexusX;
                                 p.y = nexus1.posicaoNexusy;
-                                
+
                                 nexus1.bagNexus += 50;
                                 p.bagProbe = 0;
 
@@ -330,106 +330,107 @@ public class Board extends JPanel implements ActionListener {
             playerAtual = (playerAtual == p1) ? p2 : p1;
         }
     }
-        /* 
-  key = scanner.nextLine();
-            if ("probe".equals(key) || "ls".equals(key)) {
-                for (Sprite o : objects) {
-                    conta++;
-                    if (o instanceof Probe) {
-                        if (((Probe) o).getDono().equals(playerAtual.nome)) {
 
-                            System.out.println("Arraylist[ " + (conta - 1) + " ] = " + o);
-                        }
+    /*
+key = scanner.nextLine();
+        if ("probe".equals(key) || "ls".equals(key)) {
+            for (Sprite o : objects) {
+                conta++;
+                if (o instanceof Probe) {
+                    if (((Probe) o).getDono().equals(playerAtual.nome)) {
+
+                        System.out.println("Arraylist[ " + (conta - 1) + " ] = " + o);
                     }
                 }
-                conta = 0;
+            }
+            conta = 0;
 
 
 
 
 int conta = 0;
-        System.out.println("Informar probe");
+    System.out.println("Informar probe");
 
-        while (true) {
-            String key = scanner.nextLine();
+    while (true) {
+        String key = scanner.nextLine();
 
-            if ("probe".equals(key) || "ls".equals(key)) {
+        if ("probe".equals(key) || "ls".equals(key)) {
+            for (Sprite o : objects) {
+                conta++;
+                if (o instanceof Probe) {
+                    System.out.println("Arraylist[ " + (conta - 1) + " ] = " + o);
+                }
+            }
+            System.out.println("Deseja mover o Probe ? S/n");
+            key = scanner.nextLine();
+            if ("S".equals(key) || "s".equals(key)) {
+                System.out.println("Qual probe deseja mover ?");
+                key = scanner.nextLine();
+                q = Integer.parseInt(key);
+
+                if (q != 0 && objects.get(q) instanceof Probe) {
+                    Probe p = (Probe) objects.get(q);
+                    System.out.println("Informe a posição X");
+                    key = scanner.nextLine();
+                    alteraX = Integer.parseInt(key);
+                    p.x = alteraX;
+                    System.out.println("Informe a posição Y");
+                    key = scanner.nextLine();
+                    alteraY = Integer.parseInt(key);
+                    p.y = alteraY;
+                    System.out.println("Moveu");
+                } else {
+                    System.out.println("Nao ha um probe nesta posição");
+                }
+            }
+
+            conta = 0;
+        }
+        if ("n".equals(key) || "N".equals(key)) {
+            for (Sprite o : objects) {
+                conta++;
+                if (o instanceof Construc) {
+                    System.out.println("Arraylist[ " + (conta - 1) + " ] = " + o);
+                    int t;
+                }
+            }
+            System.out.println("Deseja criar um novo Probe ? S/N");
+            String key1 = scanner.nextLine();
+            conta = 0;
+            if ("S".equals(key1) || "s".equals(key1)) {
+                criaProbe();
                 for (Sprite o : objects) {
                     conta++;
+                    c++;
                     if (o instanceof Probe) {
                         System.out.println("Arraylist[ " + (conta - 1) + " ] = " + o);
                     }
                 }
-                System.out.println("Deseja mover o Probe ? S/n");
-                key = scanner.nextLine();
-                if ("S".equals(key) || "s".equals(key)) {
-                    System.out.println("Qual probe deseja mover ?");
-                    key = scanner.nextLine();
-                    q = Integer.parseInt(key);
-
-                    if (q != 0 && objects.get(q) instanceof Probe) {
-                        Probe p = (Probe) objects.get(q);
-                        System.out.println("Informe a posição X");
-                        key = scanner.nextLine();
-                        alteraX = Integer.parseInt(key);
-                        p.x = alteraX;
-                        System.out.println("Informe a posição Y");
-                        key = scanner.nextLine();
-                        alteraY = Integer.parseInt(key);
-                        p.y = alteraY;
-                        System.out.println("Moveu");
-                    } else {
-                        System.out.println("Nao ha um probe nesta posição");
-                    }
-                }
-
                 conta = 0;
-            }
-            if ("n".equals(key) || "N".equals(key)) {
-                for (Sprite o : objects) {
-                    conta++;
-                    if (o instanceof Construc) {
-                        System.out.println("Arraylist[ " + (conta - 1) + " ] = " + o);
-                        int t;
-                    }
-                }
-                System.out.println("Deseja criar um novo Probe ? S/N");
-                String key1 = scanner.nextLine();
-                conta = 0;
-                if ("S".equals(key1) || "s".equals(key1)) {
-                    criaProbe();
-                    for (Sprite o : objects) {
-                        conta++;
-                        c++;
-                        if (o instanceof Probe) {
-                            System.out.println("Arraylist[ " + (conta - 1) + " ] = " + o);
-                        }
-                    }
-                    conta = 0;
-                
+
 
 }
-            }
-
         }
+
     }
+}
 
-       
-                                    //                     
 
-            int conta = 0;
+                                //
 
-           
-            }if ("S".equals(key) || "s".equals(key)) {
-                objects.add(new Probe(350, 300));
+        int conta = 0;
 
-            }if ("N".equals(key)) {
-               
-               Probe p = (Probe) objects.get(0);
-               p.x = 333;
-               p.y = 333;
-            }
-         */
+
+        }if ("S".equals(key) || "s".equals(key)) {
+            objects.add(new Probe(350, 300));
+
+        }if ("N".equals(key)) {
+
+           Probe p = (Probe) objects.get(0);
+           p.x = 333;
+           p.y = 333;
+        }
+     */
         /*
             if (playerAtual == p1) {
                 playerAtual = p2;
@@ -437,12 +438,18 @@ int conta = 0;
             }else{
                 playerAtual = p1;
             }
+
+//            bombo o commit
+
          */
     private class TAdapter extends KeyAdapter {
 
         @Override
         public void keyPressed(KeyEvent e) {
             int key = e.getKeyCode();
+
+
+
 
             if (key == KeyEvent.VK_LEFT) {
                 focus_shift_x += SPEED;
